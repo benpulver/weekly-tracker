@@ -5,12 +5,13 @@ import { HistoryView } from './components/HistoryView';
 import { ChartsView } from './components/ChartsView';
 import { SettingsView } from './components/SettingsView';
 import { currentWeekKey } from './weekUtils';
+import { login, logout } from './firebase';
 import './App.css';
 
 type Tab = 'week' | 'history' | 'charts' | 'settings';
 
 export default function App() {
-  const { state, updateWeek, setGoals, updateSettings, replaceState } = useAppState();
+  const { state, updateWeek, setGoals, updateSettings, replaceState, user, syncing } = useAppState();
   const [tab, setTab] = useState<Tab>('week');
   const [weekKey, setWeekKey] = useState(currentWeekKey);
 
@@ -22,7 +23,22 @@ export default function App() {
   return (
     <div className="app">
       <header>
-        <h1>Weekly Tracker</h1>
+        <div className="header-row">
+          <h1>Weekly Tracker</h1>
+          <div className="auth-area">
+            {syncing && <span className="sync-badge">Syncing...</span>}
+            {user ? (
+              <button className="auth-btn signed-in" onClick={logout}>
+                {user.photoURL && <img src={user.photoURL} alt="" className="avatar" />}
+                <span>{user.displayName?.split(' ')[0]}</span>
+              </button>
+            ) : (
+              <button className="auth-btn sign-in" onClick={login}>
+                Sign in
+              </button>
+            )}
+          </div>
+        </div>
       </header>
 
       <main>
