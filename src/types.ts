@@ -3,6 +3,7 @@ export type LoggingStyle = 'per-day-tick' | 'per-day-number' | 'weekly-number' |
 export type AwardRule =
   | 'count-of-days-gte'      // per-day tick: ticked days >= target
   | 'sum-gte'                // per-day number: sum >= target
+  | 'sum-lte'                // per-day number: sum <= target (lower is better)
   | 'days-meeting-threshold' // per-day number: days where value >= threshold, count >= requiredDays
   | 'weekly-value-gte'       // weekly number: value >= target
   | 'weekly-binary';         // weekly toggle: done = awarded

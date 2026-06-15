@@ -49,6 +49,14 @@ export function computeScore(goal: Goal, week: WeekData): { earned: boolean; rat
       progress = `${Math.round(sum * 10) / 10}/${target}`;
       break;
     }
+    case 'sum-lte': {
+      const nums = week.dailyNumbers[goal.id] || Array(7).fill(0);
+      const sum = nums.reduce((a, b) => a + b, 0);
+      const target = goal.target ?? 0;
+      ratio = target > 0 ? Math.max(0, 1 - sum / target) : (sum === 0 ? 1 : 0);
+      progress = `$${Math.round(sum * 100) / 100}/$${target}`;
+      break;
+    }
     case 'days-meeting-threshold': {
       const nums = week.dailyNumbers[goal.id] || Array(7).fill(0);
       const threshold = goal.threshold ?? 0;

@@ -20,6 +20,7 @@ const AWARD_RULES: Record<LoggingStyle, { value: AwardRule; label: string }[]> =
   'per-day-tick': [{ value: 'count-of-days-gte', label: 'Days ticked ≥ target' }],
   'per-day-number': [
     { value: 'sum-gte', label: 'Sum ≥ target' },
+    { value: 'sum-lte', label: 'Sum ≤ target (lower is better)' },
     { value: 'days-meeting-threshold', label: 'Days meeting threshold ≥ required' },
   ],
   'weekly-number': [{ value: 'weekly-value-gte', label: 'Value ≥ target' }],
@@ -76,7 +77,7 @@ function GoalEditor({ goal, onChange, onDelete }: {
         </select>
       </div>
       <div className="editor-row">
-        {(goal.awardRule === 'count-of-days-gte' || goal.awardRule === 'sum-gte' || goal.awardRule === 'weekly-value-gte') && (
+        {(goal.awardRule === 'count-of-days-gte' || goal.awardRule === 'sum-gte' || goal.awardRule === 'sum-lte' || goal.awardRule === 'weekly-value-gte') && (
           <label>
             Target:
             <input type="number" value={goal.target ?? ''} onChange={e => onChange({ ...goal, target: parseFloat(e.target.value) || 0 })} min="0" />

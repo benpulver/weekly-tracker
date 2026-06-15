@@ -32,6 +32,6 @@ export const seedGoals: Goal[] = [
   g('Running (km)', 10, 'per-day-number', 'sum-gte', { target: 35 }),
   g('PhD writing (pages)', 25, 'weekly-number', 'weekly-value-gte', { target: 21 }),
   g('RA work (hrs)', 10, 'weekly-number', 'weekly-value-gte', { target: 10 }),
-  g('Peripheral work', 5, 'weekly-binary', 'weekly-binary'),
-  g('Spending < $50/week', 5, 'weekly-binary', 'weekly-binary'),
+  g('Peripheral work (hrs)', 5, 'per-day-number', 'sum-gte', { target: 7, description: 'Ideally < 1.5 hrs/day' }),
+  g('Spending ($/day)', 5, 'per-day-number', 'sum-lte', { target: 50 }),
 ];
