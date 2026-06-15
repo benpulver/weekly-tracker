@@ -1,0 +1,387 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+}
+header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 72px;
+}
+
+/* Tab bar */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+}
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+.tab.active { color: var(--accent); }
+
+/* Week view */
+.week-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  gap: 8px;
+}
+.week-nav button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.week-info { text-align: center; flex: 1; }
+.week-label { font-weight: 600; font-size: 14px; color: var(--text-h); }
+.today-btn {
+  font-size: 12px;
+  color: var(--accent);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  padding: 2px;
+}
+
+.score-banner {
+  text-align: center;
+  padding: 8px 16px 4px;
+}
+.score-big {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--text-h);
+  line-height: 1;
+}
+.score-max { font-size: 20px; color: var(--text-muted); font-weight: 400; }
+.score-pct { font-size: 18px; color: var(--accent); font-weight: 600; }
+.weeks-left { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+.score-bar {
+  height: 6px;
+  background: var(--border);
+  margin: 8px 16px 12px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+/* Goal rows */
+.goals-list { padding: 0 12px 16px; }
+.goal-row {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  box-shadow: var(--shadow);
+}
+.goal-row.partial {
+  border-color: var(--accent-border);
+  background: var(--accent-light);
+}
+.goal-row.earned {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.goal-name { font-weight: 600; font-size: 14px; color: var(--text-h); }
+.goal-pts { font-size: 13px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+.goal-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+
+/* Day cells */
+.day-cells {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.day-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 38px;
+  flex: 1;
+}
+.day-cell.tick {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 2px;
+  background: var(--bg);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.day-cell.tick.checked {
+  background: var(--green-light);
+  border-color: var(--green);
+}
+.day-label { font-size: 10px; color: var(--text-muted); }
+.tick-mark { font-size: 16px; min-height: 20px; color: var(--green); }
+
+.day-cell.number {
+  gap: 2px;
+}
+.day-cell.number input {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 2px;
+  font-size: 13px;
+  background: var(--bg);
+}
+.day-cell.number input:focus {
+  outline: 2px solid var(--accent);
+  border-color: transparent;
+}
+
+.tally {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 50px;
+  text-align: right;
+}
+
+/* Weekly inputs */
+.weekly-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.weekly-input input {
+  width: 80px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 15px;
+  background: var(--bg);
+}
+.weekly-input input:focus {
+  outline: 2px solid var(--accent);
+  border-color: transparent;
+}
+.toggle-btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 14px;
+}
+.toggle-btn.on {
+  background: var(--green-light);
+  border-color: var(--green);
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* History */
+.history-view { padding: 16px; }
+.month-group { margin-bottom: 20px; }
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--text-h);
+  font-size: 15px;
+}
+.month-stats { font-size: 12px; color: var(--text-muted); font-weight: 400; }
+.history-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 8px;
+  border: none;
+  background: none;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.history-row:active { background: var(--accent-light); }
+.history-week { font-size: 14px; flex: 1; }
+.history-score { font-size: 14px; font-weight: 600; margin-right: 8px; }
+.history-pct { font-size: 13px; color: var(--accent); font-weight: 600; min-width: 40px; text-align: right; }
+
+.empty { padding: 40px 16px; text-align: center; color: var(--text-muted); }
+
+/* Charts */
+.charts-view { padding: 16px; }
+.charts-view h3 { font-size: 16px; margin: 16px 0 8px; }
+
+/* Settings */
+.settings-view { padding: 16px; }
+.settings-section { margin-bottom: 24px; }
+.settings-section h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.total-badge {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--green-light);
+  color: var(--green);
+}
+.total-badge.warn {
+  background: var(--red-light);
+  color: var(--red);
+}
+
+.settings-section > input[type="date"] {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  background: var(--bg);
+}
+
+.goal-editor {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+.editor-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.goal-name-input {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-weight: 600;
+  background: var(--bg);
+}
+.pts-input {
+  width: 50px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  text-align: center;
+  background: var(--bg);
+}
+.pts-label { font-size: 13px; color: var(--text-muted); }
+.desc-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 13px;
+  margin-bottom: 8px;
+  background: var(--bg);
+}
+.editor-row select {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  background: var(--bg);
+  font-size: 13px;
+}
+.editor-row label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.editor-row label input {
+  width: 60px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 6px;
+  background: var(--bg);
+}
+.delete-btn {
+  border: none;
+  background: none;
+  color: var(--red);
+  font-size: 13px;
+  padding: 4px 0;
+}
+.add-btn {
+  width: 100%;
+  padding: 10px;
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  background: none;
+  color: var(--accent);
+  font-weight: 600;
+}
+.export-btn, .import-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.settings-view textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+  font-family: monospace;
+  font-size: 12px;
+  background: var(--bg);
+  resize: vertical;
+  margin-top: 8px;
+}
