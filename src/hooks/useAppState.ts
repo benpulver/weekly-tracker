@@ -9,7 +9,7 @@ export function useAppState() {
   const [user, setUser] = useState<User | null>(null);
   const [syncing, setSyncing] = useState(false);
   const userRef = useRef<User | null>(null);
-  const cloudTimer = useRef<ReturnType<typeof setTimeout>>();
+  const cloudTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
     return onAuth(async (u) => {
